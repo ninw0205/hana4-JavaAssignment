@@ -1,6 +1,5 @@
 package ex3;
 
-import ex3.exception.AccountException;
 import ex3.exception.LowBalanceException;
 
 public class BasicAccount extends Account implements Transactable {
@@ -10,7 +9,7 @@ public class BasicAccount extends Account implements Transactable {
 	}
 
 	@Override
-	public void withdraw(int amount) throws AccountException {
+	public void withdraw(int amount) throws LowBalanceException {
 		if (this.balance < amount) {
 			throw new LowBalanceException();
 		}

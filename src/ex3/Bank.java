@@ -86,8 +86,8 @@ public class Bank {
 						}
 					}
 					case "-" -> handleWithdrawal(account);
-					case "T" -> handleTransfer(account);
-					case "I" -> {
+					case "T", "t" -> handleTransfer(account);
+					case "I", "i" -> {
 						printAccountInfo(account);
 						if (isFixedDeposit) {
 							((FixedDepositAccount)account).printRates();
