@@ -85,10 +85,11 @@ public class Bank {
 	}
 
 	private void accountMenu(Account account) throws AccountException {
+		boolean isFixedDeposit = account instanceof FixedDepositAccount;
 		while (true) {
 			System.out.printf("> %s (+: %s, -: 출금, T: 이체, I: 정보) ",
-				(account instanceof FixedDepositAccount) ? "정기 예금이 만기되었습니다." : "원하시는 업무는?",
-				(account instanceof FixedDepositAccount) ? "만기처리" : "입금");
+				isFixedDeposit ? "정기 예금이 만기되었습니다." : "원하시는 업무는?",
+				isFixedDeposit ? "만기처리" : "입금");
 			String tmp = scanner.nextLine();
 			if (tmp.equals("") || tmp.equals("0")) {
 				return;
@@ -96,7 +97,7 @@ public class Bank {
 			try {
 				switch (tmp) {
 					case "+" -> {
-						if (account instanceof FixedDepositAccount) {
+						if (isFixedDeposit) {
 							if (handleFixedDeposit((FixedDepositAccount) account)) {
 								return;
 							}
@@ -108,7 +109,7 @@ public class Bank {
 					case "T" -> handleTransfer(account);
 					case "I" -> {
 						printAccountInfo(account);
-						if (account instanceof FixedDepositAccount) {
+						if (isFixedDeposit) {
 							((FixedDepositAccount)account).printRates();
 						}
 					}
@@ -234,9 +235,9 @@ public class Bank {
 		user.getAccountList()
 			.stream()
 			.filter(acc -> acc.getAccountNo() != account.getAccountNo())
-			.map(acc -> acc.getAccountNo() + ": " + acc.getAccountName() + (
-				(user.getAccountList().size() == acc.getAccountNo()) ? "" : " "))
-			.forEach(System.out::print);
+			.map(acc -> acc.getAccountNo() + ": " + acc.getAccountName())
+			.reduce((a, b) -> a + " " + b)
+			.ifPresent(System.out::print);
 		System.out.print(") ");
 		String input = scanner.nextLine();
 		if (input.equals("") || input.equals("0")) {
