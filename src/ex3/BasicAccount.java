@@ -12,7 +12,6 @@ public class BasicAccount extends Account implements Transactable {
 	@Override
 	public void withdraw(int amount) throws AccountException {
 		if (this.balance < amount) {
-			// System.out.printf("잔액이 부족합니다! (잔액: %,d원)\n", getBalance());
 			throw new LowBalanceException();
 		}
 		this.balance -= amount;
@@ -23,8 +22,6 @@ public class BasicAccount extends Account implements Transactable {
 	@Override
 	public void transfer(Account account, int amount) throws LowBalanceException {
 		if (this.balance < amount) {
-			// System.out.printf("잔액이 부족합니다! (잔액: %,d원)\n", getBalance());
-			// return;
 			throw new LowBalanceException();
 		}
 

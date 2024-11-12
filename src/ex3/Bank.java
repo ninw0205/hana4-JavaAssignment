@@ -183,22 +183,24 @@ public class Bank {
 		}
 
 		while (true) {
-			try {
-				Account to = sendMoneyWhere(account);
-				if (to == null) {
+			Account to = sendMoneyWhere(account);
+			if (to == null) {
+				return;
+			}
+			while (true) {
+				try {
+					int input = inputHandler.getIntInputWithQuestion("%s 통장에 보낼 금액은? ".formatted(to.getAccountName()));
+					if (input == 0) {
+						return;
+					}
+					((Transactable)account).transfer(to, input);
 					return;
+				} catch (LowBalanceException e) {
+					System.out.print(e.getMessage());
+					System.out.printf(" (잔액: %,d원)\n", account.getBalance());
+				} catch (NumberFormatException e) {
+					System.out.println("올바른 숫자를 입력해주세요.");
 				}
-				int input = inputHandler.getIntInputWithQuestion("%s 통장에 보낼 금액은? ".formatted(to.getAccountName()));
-				if (input == 0) {
-					return;
-				}
-				((Transactable)account).transfer(to, input);
-				break;
-			} catch (LowBalanceException e) {
-				System.out.print(e.getMessage());
-				System.out.printf(" (잔액: %,d원)\n", account.getBalance());
-			} catch (NumberFormatException e) {
-				System.out.println("올바른 숫자를 입력해주세요.");
 			}
 		}
 	}

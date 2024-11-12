@@ -3,7 +3,7 @@ package ex3;
 import java.util.List;
 
 public class AccountService {
-	private User user;
+	private final User user;
 
 	public AccountService(String username) {
 		this.user = new User(username);
