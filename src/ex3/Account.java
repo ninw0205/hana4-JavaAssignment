@@ -1,9 +1,9 @@
 package ex3;
 
 public class Account implements Comparable<Account> {
-	protected int accountNo;
-	protected String accountName;
-	protected String depositor;
+	private final int accountNo;
+	private final String accountName;
+	private final String depositor;
 	protected int balance;
 
 	public Account(int accountNo, String accountName, String depositor, int balance) {

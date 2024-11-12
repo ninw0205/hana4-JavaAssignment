@@ -43,8 +43,10 @@ public class Bank {
 				System.out.println("계좌번호가 틀렸습니다.");
 				continue;
 			}
+
 			if (account != null)
 				printAccountInfo(account);
+
 			try {
 				accountMenu(account);
 			} catch (AccountException e) {

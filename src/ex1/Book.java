@@ -1,6 +1,4 @@
-package Ex1;
-
-import java.util.Calendar;
+package ex1;
 
 public class Book {
 	private final String isbn;

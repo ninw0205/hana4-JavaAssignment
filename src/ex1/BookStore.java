@@ -1,4 +1,4 @@
-package Ex1;
+package ex1;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

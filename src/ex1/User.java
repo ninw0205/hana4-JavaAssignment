@@ -1,4 +1,4 @@
-package Ex1;
+package ex1;
 
 public class User {
 	private final String name;
