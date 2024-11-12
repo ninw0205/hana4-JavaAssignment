@@ -1,6 +1,6 @@
 package ex3;
 
-public class Account {
+public class Account implements Comparable<Account> {
 	protected int accountNo;
 	protected String accountName;
 	protected String depositor;
@@ -33,10 +33,8 @@ public class Account {
 	public int getBalance() {
 		return balance;
 	}
-
 	@Override
-	public String toString() {
-		return "%s 통장 (계좌번호: %s, 예치금: %,d원, 예금주:%s)".formatted(getAccountName(), getAccountNo(), getBalance(),
-			getDepositor());
+	public int compareTo(Account account) {
+		return this.getAccountNo() - account.getAccountNo();
 	}
 }

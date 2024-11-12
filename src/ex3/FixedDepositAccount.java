@@ -32,7 +32,6 @@ public class FixedDepositAccount extends Account {
 		int money = (int)(Double.parseDouble(rate) * getBalance() / 100) + getBalance();
 		account.deposit(money);
 		this.balance = 0;
-		System.out.println(getAccountName() + " 통장은 해지되었습니다. 감사합니다.");
 	}
 
 	public void printRates() {

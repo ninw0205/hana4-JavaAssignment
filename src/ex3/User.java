@@ -6,8 +6,17 @@ import java.util.List;
 
 public class User {
 	private final List<Account> accountList = new ArrayList<>();
+	private final String name;
 
-	public User(Account[] accounts) {
+	public User(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void checkAccounts(Account[] accounts) {
 		accountList.addAll(Arrays.asList(accounts));
 	}
 
